@@ -26,8 +26,8 @@ class Helper():
     # to choose one of it.
     def __init__(self):
         self.welcome_msg = """
-        ===================================
-        ====== Welome To Octanet ATM ======
+        ===================================================
+        ============== WELCOME TO OCTANET ATM ==============
         Your N0.1 reliable Bank you can trust with security.
 
         """
@@ -65,6 +65,7 @@ class Helper():
     # Welcome message
     # @return welcome message to the user
     def welcome(self):
+
         if(self.isLogin):
             print(f'{self.welcome_msg}  {self.instruction}')
 
@@ -79,11 +80,11 @@ class Helper():
 
                     print('...')
                     #delay by 2s
-                    time.sleep(2)
+                    time.sleep(1)
                     print(f'Your currnt balance is {self.currency} {self.balance}')
                     self.delay(1)
                     print('...')
-                    self.delay(1)
+                    self.delay(2)
                     self.welcome()
 
             except:
@@ -108,8 +109,7 @@ class Helper():
                     self.balance = self.balance-self.amount
 
                     # add record to transaction history
-                    self.transaction_history.append('You withdrawn an amount of {}'.format(self.amount))
-                    self.transaction_history.append('Date: {} and Time: {}'.format(self.getDate(), self.getTime()))
+                    self.transaction_history.append('You withdrawn an amount of {} | Date: {} and Time: {}'.format(self.amount, self.getDate(), self.getTime()))
 
                     # delay for 1 second
                     self.delay(1)
@@ -121,6 +121,8 @@ class Helper():
                     self.welcome()
 
                 else:
+                    # amount to withdraw is greater than account balance
+                    # delay program for 3s and re-run welcome screen
                     print('You have insufficient balance in your account')
                     self.delay(1)
                     print('...')
@@ -139,8 +141,7 @@ class Helper():
                 self.balance = self.balance + self.amount
 
                 # add record to transaction history
-                self.transaction_history.append('You deposited an amount of {}'.format(self.amount))
-                self.transaction_history.append('Date: {} and Time:{}'.format(self.getDate(), self.getTime()))
+                self.transaction_history.append('You deposited an amount of {} | Date: {} and Time:{}'.format(self.amount,self.getDate(), self.getTime()))
                 
                 # delay for 1 second
                 self.delay(1)
@@ -185,9 +186,16 @@ class Helper():
 
             # Transaction History
             if(self.user_option == 5):
+                print('\n')
                 print('Your Transaction History')
                 print('================================')
-                print(self.transaction_history)
+                
+                # loop through transaction
+                for self.history in self.transaction_history:
+                    print(self.history)
+                    print('---------------------------------------------------')
+
+                # delay for 4s and re-run welcome scren  
                 self.delay(2)
                 print('...')
                 self.delay(2)
@@ -195,10 +203,10 @@ class Helper():
 
             # Exiting the ATM
             if(self.user_option == 6):
+                self.isLogin = False
                 print('Exiting...')
                 self.delay(1)
                 print('GOOD BYE')
-                self.isLogin = False
                 exit(0)
 
 
@@ -207,10 +215,12 @@ class Helper():
 
         print(f'{self.welcome_msg}')
         
+        # allow program to re-run and exit upon user command
+        # i.e. if user enter exit number.
         while True:
             # handle input exception
             try:
-                # ask user to enter ATM PIN
+                # check user login attemps
                 if(self.failed_login == 3):
                     # user has reached login attempts, break from the loop and exit
                     print('Login Attempts reached. Please re-run the program.')
@@ -220,21 +230,38 @@ class Helper():
                 else:
                     # handle input exception
                     try:
+                        # ask user to enter ATM PIN
                         self.pin_code = int(input('Enter your pin: '))
+
+                        #if pin matches, log user in by setting self.isLogin = True
                         if(self.pin_code == self.pin):
                             self.isLogin = True
                             break
                         else:
+                            # if wrong pin, set self.isLogin = True and increase self.failed_login by 1
                             print('Invalid PIN. Try again: ')
                             self.isLogin = False
                             self.failed_login += 1
                     except:
-                        print('Invalid PIN. Try again: ')
+                        # if wrong pin, set self.isLogin = True and increase self.failed_login by 1
+                        # Here if user enters characters & sysbols instead of numbers
+                        print('Input Error: Enter number only. Trying again: ')
+                        self.isLogin = False
+                        self.failed_login += 1
+                        # delay for 1s
+                        self.delay(1)
 
+            # catch errors if try block failed to execute
             except:
-                print('Invalid PIN. Try again: ')
+                print('System encountered an unknown error: ')
+                print('Exiting.....')
+                time.sleep(2)
+                break
+           
+                
 
         # Launch welcome screen
+        # This only runs upon succesful login
         self.welcome()  
 
     # delay time
