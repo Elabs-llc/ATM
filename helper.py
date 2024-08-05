@@ -26,7 +26,7 @@ class Helper():
     # to choose one of it.
     def __init__(self):
         self.welcome_msg = """
-        ===================================================
+        ====================================================
         ============== WELCOME TO OCTANET ATM ==============
         Your N0.1 reliable Bank you can trust with security.
 
@@ -190,7 +190,11 @@ class Helper():
                 print('Your Transaction History')
                 print('================================')
                 
-                # loop through transaction
+                # Check if transaction history is empty
+                if len(self.transaction_history) == 0:
+                    print('No Transaction History. Do more transaction with OCTANET ATM. ')
+                    
+                # loop through transaction and print each on a separate line 
                 for self.history in self.transaction_history:
                     print(self.history)
                     print('---------------------------------------------------')

@@ -11,7 +11,7 @@ import helper
 def init():
     # intialize Helper class
     _helper = helper.Helper()
-
+ 
     # check if user is logged in
     if(_helper.isLogin):
 
