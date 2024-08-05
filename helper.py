@@ -76,11 +76,11 @@ class Helper():
                 # checking account balance
                 if(self.user_option == 1):
                     # delay by 1s
-                    time.sleep(1)
+                    self.delay(1)
 
                     print('...')
                     #delay by 2s
-                    time.sleep(1)
+                    self.delay(2)
                     print(f'Your currnt balance is {self.currency} {self.balance}')
                     self.delay(1)
                     print('...')
@@ -265,7 +265,7 @@ class Helper():
         self.welcome()  
 
     # delay time
-    def delay(self,seconds):
+    def delay(self,seconds = 0):
         time.sleep(seconds)
 
 
