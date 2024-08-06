@@ -1,4 +1,4 @@
-# ATM SIMULATION Progrom
+# ATM SIMULATION Program
 This Python program simulates the basic functions of an ATM machine. It allows users to perform the following actions:
 - Account balance inquiry
 - Cash withdrawal
@@ -17,11 +17,11 @@ This Python program simulates the basic functions of an ATM machine. It allows u
 
 ### Login
 -  System will authenticate users before display ATM Screen.
--  Users have to use a default passowrd of `2024` to login and interact with the ATM
+-  Users have to use a default password of `2024` to login and interact with the ATM
 
 ### Account Balance Inquiry
 -	Users can check their account balance by selecting this option.
--   This funcionality can be found on the `welcome` method of the `helper.py` class
+-   This functionality can be found on the `welcome` method of the `helper.py` class
 
 ### Cash Withdrawal
 -	Users can withdraw cash from their account. They need to enter the amount they wish to withdraw.
@@ -35,7 +35,7 @@ This Python program simulates the basic functions of an ATM machine. It allows u
 ### Transaction History
 -	Users can view their recent transaction history, showing details of withdrawals, deposits, and balance inquiries.
 
-All these functions was implented in the `welcome` method of the `helper.py` class
+All these functions were implanted in the `welcome` method of the `helper.py` class
 
 ## Contributors
 - [Edwin Asare]
