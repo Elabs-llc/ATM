@@ -19,7 +19,7 @@ def init():
         _helper.welcome()
         
     else:
-        print(_helper.login()) 
+        _helper.login()
         
         
 if __name__ == '__main__':
